@@ -5,6 +5,7 @@
 //  Created by Taha Chaudhry on 17/08/2023.
 //
 
+import ActivityKit
 import WidgetKit
 import SwiftUI
 
@@ -22,16 +23,12 @@ struct Provider: TimelineProvider {
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         var entries: [SimpleEntry] = []
-
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
+        
         let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate, vehicleModel: data.getVehicleModel(), parkingSpace: data.getParkingSpace(), isParked: data.getIsParked())
-            entries.append(entry)
-        }
+        let entry = SimpleEntry(date: currentDate, vehicleModel: data.getVehicleModel(), parkingSpace: data.getParkingSpace(), isParked: data.getIsParked())
+        entries.append(entry)
 
-        let timeline = Timeline(entries: entries, policy: .atEnd)
+        let timeline = Timeline(entries: [entry], policy: .atEnd)
         completion(timeline)
     }
 }
@@ -45,46 +42,39 @@ struct SimpleEntry: TimelineEntry {
 
 struct parking_lot_widgetEntryView : View {
     var entry: Provider.Entry
-    
     let data = DataService()
-    //    @AppStorage("vehicleModel", store: UserDefaults(suiteName: "group.com.parkinglot.pitch")) var vehicleModel: String = ""
-    //    @AppStorage("isParked", store: UserDefaults(suiteName: "group.com.parkinglot.pitch")) var isParked: Bool = false
-    //    @AppStorage("parkingSpace", store: UserDefaults(suiteName: "group.com.parkinglot.pitch")) var parkingSpace: String = ""
     
     var body: some View {
-        VStack {
-            if !data.isParked {
-                ZStack {
-                    Color.black
-                    VStack {
-                        ForEach(1..<6) { row in
-                            HStack(spacing: 10) {
-                                ForEach(0..<5) { column in
-                                    Button {
-                                        
-                                    } label: {
-                                        ZStack {
-                                            RoundedRectangle(cornerRadius: 5)
-                                                .foregroundColor((row == 4) && (column == 3) ? Color.yellow : Color.black)
-                                                .overlay(RoundedRectangle(cornerRadius: 5).stroke(.white, lineWidth: 1))
-//                                            RoundedRectangle(cornerRadius: 5)
-//                                                .foregroundColor(Color.black)
-                                            if (row == 4) && (column == 3) {
-                                                Image(systemName: "parkingsign")
-                                                    .frame(width: 10, height: 10)
-                                                    .foregroundColor(.white)
-                                                    .font(.caption)
-                                            }
-                                        }
+        if !data.isParked {
+            ZStack {
+                Color.black
+                VStack {
+                    ForEach(1..<6) { row in
+                        HStack(spacing: 10) {
+                            ForEach(0..<5) { column in
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 5)
+                                        .foregroundColor((row == 4) && (column == 3) ? Color.yellow : Color.black)
+                                        .overlay(RoundedRectangle(cornerRadius: 5).stroke(.white, lineWidth: 1))
+                                    if (row == 4) && (column == 3) {
+                                        Image(systemName: "parkingsign")
+                                            .frame(width: 10, height: 10)
+                                            .foregroundColor(.white)
+                                            .font(.caption)
                                     }
                                 }
                             }
                         }
-                    }.padding(15)
-                }
-            } else {
-                Text("\(data.vehicleModel) parked at \(data.parkingSpace)").onAppear {
-                    print("test")
+                    }
+                }.padding(15)
+            }
+        } else {
+            ZStack {
+                Color.black
+                VStack {
+                    Text("\(data.vehicleModel) parked at \(data.parkingSpace)").onAppear {
+                        print("test")
+                    }
                 }
             }
         }

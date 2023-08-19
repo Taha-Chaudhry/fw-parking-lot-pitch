@@ -7,15 +7,18 @@
 
 import Foundation
 import SwiftUI
+import WidgetKit
 
 struct DataService {
     @AppStorage("vehicleModel", store: UserDefaults(suiteName: "group.com.parkinglot.pitch")) var vehicleModel: String = ""
     @AppStorage("isParked", store: UserDefaults(suiteName: "group.com.parkinglot.pitch")) var isParked: Bool = false
     @AppStorage("parkingSpace", store: UserDefaults(suiteName: "group.com.parkinglot.pitch")) var parkingSpace: String = ""
     
-//    func unpark() -> String {
-//        return ""
-//    }
+    func unpark() {
+        isParked = false
+        parkingSpace = ""
+        WidgetCenter.shared.reloadTimelines(ofKind: "parking_lot_widget")
+    }
     
     func getVehicleModel() -> String {
         return vehicleModel

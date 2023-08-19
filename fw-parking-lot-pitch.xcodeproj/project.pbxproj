@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A0D99812A90BF94006EA300 /* ParkingAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0D99802A90BF94006EA300 /* ParkingAttributes.swift */; };
+		2A0D99822A90BF94006EA300 /* ParkingAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0D99802A90BF94006EA300 /* ParkingAttributes.swift */; };
+		2A0D99842A90C839006EA300 /* StartingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0D99832A90C839006EA300 /* StartingView.swift */; };
+		2A0D99862A90C86F006EA300 /* ParkedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0D99852A90C86F006EA300 /* ParkedView.swift */; };
+		2A0D99882A90C89B006EA300 /* UnparkedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0D99872A90C89B006EA300 /* UnparkedView.swift */; };
+		2A0D998A2A90C917006EA300 /* ParkingGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0D99892A90C917006EA300 /* ParkingGrid.swift */; };
+		2A0D998C2A90C933006EA300 /* EditVehicleModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0D998B2A90C933006EA300 /* EditVehicleModelView.swift */; };
 		2A51B37D2A8D19D800B37A14 /* fw_parking_lot_pitchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A51B37C2A8D19D800B37A14 /* fw_parking_lot_pitchApp.swift */; };
 		2A51B3812A8D19D900B37A14 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A51B3802A8D19D900B37A14 /* Assets.xcassets */; };
 		2A51B3842A8D19D900B37A14 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A51B3832A8D19D900B37A14 /* Preview Assets.xcassets */; };
@@ -47,6 +54,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2A0D99802A90BF94006EA300 /* ParkingAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingAttributes.swift; sourceTree = "<group>"; };
+		2A0D99832A90C839006EA300 /* StartingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartingView.swift; sourceTree = "<group>"; };
+		2A0D99852A90C86F006EA300 /* ParkedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkedView.swift; sourceTree = "<group>"; };
+		2A0D99872A90C89B006EA300 /* UnparkedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnparkedView.swift; sourceTree = "<group>"; };
+		2A0D99892A90C917006EA300 /* ParkingGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingGrid.swift; sourceTree = "<group>"; };
+		2A0D998B2A90C933006EA300 /* EditVehicleModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditVehicleModelView.swift; sourceTree = "<group>"; };
+		2A0D998D2A910076006EA300 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2A51B3792A8D19D800B37A14 /* fw-parking-lot-pitch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "fw-parking-lot-pitch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A51B37C2A8D19D800B37A14 /* fw_parking_lot_pitchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fw_parking_lot_pitchApp.swift; sourceTree = "<group>"; };
 		2A51B3802A8D19D900B37A14 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -108,9 +122,15 @@
 		2A51B37B2A8D19D800B37A14 /* fw-parking-lot-pitch */ = {
 			isa = PBXGroup;
 			children = (
+				2A0D998D2A910076006EA300 /* Info.plist */,
 				2A51B3B22A8E3A9900B37A14 /* fw-parking-lot-pitch.entitlements */,
 				2A51B37C2A8D19D800B37A14 /* fw_parking_lot_pitchApp.swift */,
 				2A51B3922A8E190200B37A14 /* ContentView.swift */,
+				2A0D998B2A90C933006EA300 /* EditVehicleModelView.swift */,
+				2A0D99892A90C917006EA300 /* ParkingGrid.swift */,
+				2A0D99872A90C89B006EA300 /* UnparkedView.swift */,
+				2A0D99852A90C86F006EA300 /* ParkedView.swift */,
+				2A0D99832A90C839006EA300 /* StartingView.swift */,
 				2A51B3802A8D19D900B37A14 /* Assets.xcassets */,
 				2A51B3822A8D19D900B37A14 /* Preview Content */,
 			);
@@ -139,6 +159,7 @@
 			children = (
 				2A51B39F2A8E342500B37A14 /* parking_lot_widgetBundle.swift */,
 				2A51B3A12A8E342500B37A14 /* parking_lot_widgetLiveActivity.swift */,
+				2A0D99802A90BF94006EA300 /* ParkingAttributes.swift */,
 				2A51B3A32A8E342500B37A14 /* parking_lot_widget.swift */,
 				2A51B3AF2A8E37AC00B37A14 /* DataService.swift */,
 				2A51B3A52A8E342700B37A14 /* Assets.xcassets */,
@@ -248,9 +269,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A0D99882A90C89B006EA300 /* UnparkedView.swift in Sources */,
 				2A51B3B02A8E37AC00B37A14 /* DataService.swift in Sources */,
+				2A0D99812A90BF94006EA300 /* ParkingAttributes.swift in Sources */,
 				2A51B3932A8E190200B37A14 /* ContentView.swift in Sources */,
+				2A0D998C2A90C933006EA300 /* EditVehicleModelView.swift in Sources */,
+				2A0D99862A90C86F006EA300 /* ParkedView.swift in Sources */,
 				2A51B37D2A8D19D800B37A14 /* fw_parking_lot_pitchApp.swift in Sources */,
+				2A0D998A2A90C917006EA300 /* ParkingGrid.swift in Sources */,
+				2A0D99842A90C839006EA300 /* StartingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,6 +287,7 @@
 			files = (
 				2A51B3A02A8E342500B37A14 /* parking_lot_widgetBundle.swift in Sources */,
 				2A51B3A22A8E342500B37A14 /* parking_lot_widgetLiveActivity.swift in Sources */,
+				2A0D99822A90BF94006EA300 /* ParkingAttributes.swift in Sources */,
 				2A51B3A42A8E342500B37A14 /* parking_lot_widget.swift in Sources */,
 				2A51B3B12A8E386C00B37A14 /* DataService.swift in Sources */,
 			);
@@ -403,6 +431,8 @@
 				DEVELOPMENT_TEAM = VFMMKQ4CEK;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "fw-parking-lot-pitch/Info.plist";
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -434,6 +464,8 @@
 				DEVELOPMENT_TEAM = VFMMKQ4CEK;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "fw-parking-lot-pitch/Info.plist";
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

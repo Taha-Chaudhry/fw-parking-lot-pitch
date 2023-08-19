@@ -9,56 +9,98 @@ import ActivityKit
 import WidgetKit
 import SwiftUI
 
-struct parking_lot_widgetAttributes: ActivityAttributes {
-    public struct ContentState: Codable, Hashable {
-        // Dynamic stateful properties about your activity go here!
-        var value: Int
-    }
-
-    // Fixed non-changing properties about your activity go here!
-    var name: String
-}
+//struct parking_lot_widgetAttributes: ActivityAttributes {
+//    public struct ContentState: Codable, Hashable {
+//        // Dynamic stateful properties about your activity go here!
+//        var value: Int
+////        var timeElapsed: Date
+//    }
+//
+//    // Fixed non-changing properties about your activity go here!
+//    var name: String
+//}
 
 struct parking_lot_widgetLiveActivity: Widget {
     var body: some WidgetConfiguration {
-        ActivityConfiguration(for: parking_lot_widgetAttributes.self) { context in
-            // Lock screen/banner UI goes here
-            VStack {
-                Text("Hello")
+        ActivityConfiguration(for: ParkingAttributes.self) { context in
+            VStack() {
+                HStack {
+                    Text("Venue Parking Lot")
+                        .fontDesign(.rounded)
+                        .font(.title2)
+                    Spacer()
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 12)
+                            .frame(width: 35, height: 35)
+                            .foregroundColor(.black)
+                        Text("\(context.attributes.parkingSpace)")
+                            .foregroundColor(.yellow)
+                            .font(.headline)
+                            .fontDesign(.rounded)
+                    }
+                }
+                
+                HStack {
+                    Text(context.state.startDate, style: .timer)
+                        .font(.largeTitle)
+                        .frame(width: 80)
+                    
+                    Spacer()
+                    Text("\(context.attributes.vehicleModel)")
+                        .font(.subheadline)
+                        .fontDesign(.rounded)
+                        .fontWeight(.heavy)
+                        .bold()
+                    Spacer()
+                    Link(destination: URL(string:"parkingapp://unpark")!) {
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 15)
+                                .frame(width: 100, height: 40)
+                                .foregroundColor(.black)
+                            Text("Unpark")
+                                .fontDesign(.rounded)
+                                .fontWeight(.heavy)
+                                .bold()
+                                .foregroundColor(.white)
+                        }.shadow(radius: 10)
+                    }
+                }
             }
-            .activityBackgroundTint(Color.cyan)
+            .activityBackgroundTint(Color.white)
             .activitySystemActionForegroundColor(Color.black)
+            .padding()
 
         } dynamicIsland: { context in
             DynamicIsland {
-                // Expanded UI goes here.  Compose the expanded UI through
-                // various regions, like leading/trailing/center/bottom
                 DynamicIslandExpandedRegion(.leading) {
                     Text("Leading")
+                }
+                DynamicIslandExpandedRegion(.center) {
+                    Text("Center")
                 }
                 DynamicIslandExpandedRegion(.trailing) {
                     Text("Trailing")
                 }
                 DynamicIslandExpandedRegion(.bottom) {
                     Text("Bottom")
-                    // more content
                 }
             } compactLeading: {
-                Text("L")
+                Image(systemName: "parkingsign.circle")
+                    .foregroundColor(.yellow)
             } compactTrailing: {
-                Text("T")
+                Text("\(context.attributes.parkingSpace)")
             } minimal: {
-                Text("Min")
+                Image(systemName: "parkingsign.circle.fill")
+                    .foregroundColor(.yellow)
+                    .padding()
             }
-            .widgetURL(URL(string: "http://www.apple.com"))
-            .keylineTint(Color.red)
         }
     }
 }
 
 struct parking_lot_widgetLiveActivity_Previews: PreviewProvider {
-    static let attributes = parking_lot_widgetAttributes(name: "Me")
-    static let contentState = parking_lot_widgetAttributes.ContentState(value: 3)
+    static let attributes = ParkingAttributes(vehicleModel: "Toyota Yarris", parkingSpace: "A2")
+    static let contentState = ParkingAttributes.ContentState(startDate: Date())
 
     static var previews: some View {
         attributes

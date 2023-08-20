@@ -109,7 +109,7 @@ struct ParkedView: View {
     }
 }
 
-struct CircularProgressView: View {
+private struct CircularProgressView: View {
     let progress: Double
     
     var body: some View {

@@ -25,6 +25,9 @@ struct ContentView: View {
             }
         }
         .onOpenURL { incomingURL in
+            DispatchQueue.main.async {
+                handleIncomingURL(incomingURL)
+            }
             handleIncomingURL(incomingURL)
         }
     }

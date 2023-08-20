@@ -19,17 +19,19 @@ struct UnparkedView: View {
     
     var body: some View {
         VStack {
-            Text("\($vehicleModel.wrappedValue)")
-                .font(.largeTitle)
-                .bold()
-                .padding()
+            HStack {
+                Text("\($vehicleModel.wrappedValue)")
+                    .font(.largeTitle)
+                    .bold()
+                DataService().getLogo(vehicleModel)
+                    .frame(width: 35, height: 35)
+            }.padding()
             
             Text("Tap on the space you would like to park at")
                 .fontDesign(.rounded)
                 .bold()
                 .foregroundColor(.gray)
                 .multilineTextAlignment(.center)
-//                .padding()
             
             Divider()
             

@@ -42,10 +42,17 @@ struct SimpleEntry: TimelineEntry {
 
 struct parking_lot_widgetEntryView : View {
     var entry: Provider.Entry
-    let data = DataService()
+    
+    let date = Date()
+    
+    func formattedTime(from date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
+        return formatter.string(from: date)
+    }
     
     var body: some View {
-        if !data.isParked {
+        if !entry.isParked {
             ZStack {
                 Color.black
                 VStack {
@@ -69,14 +76,77 @@ struct parking_lot_widgetEntryView : View {
                 }.padding(15)
             }
         } else {
-            ZStack {
-                Color.black
-                VStack {
-                    Text("\(data.vehicleModel) parked at \(data.parkingSpace)").onAppear {
-                        print("test")
+            VStack(alignment: .leading) {
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text("Parking")
+                            .fontDesign(.rounded)
+                            .bold()
+                            .foregroundColor(.yellow)
+                            .multilineTextAlignment(.leading)
+                            .padding([.leading, .top])
+                        HStack {
+                            Text("\(entry.vehicleModel)")
+                                .font(.subheadline)
+                                .fontDesign(.rounded)
+                                .foregroundColor(.black)
+                                .bold()
+                            DataService().getLogo(entry.vehicleModel)
+                                .frame(width: 20, height: 20)
+                        }.padding(.leading)
                     }
+                }.padding([.top])
+                
+                Divider()
+                
+                HStack {
+                    VStack(alignment: .leading) {
+                            Text("Since")
+                                .fontDesign(.rounded)
+                                .bold()
+                                .foregroundColor(.gray)
+                                .multilineTextAlignment(.center)
+                        Text(formattedTime(from: date))
+                            .font(.title)
+                    }.padding([.leading, .bottom])
+                    Spacer()
+                    ZStack {
+                        Circle()
+                            .frame(width: 30, height: 30)
+                            .foregroundColor(.white)
+                            .shadow(radius: 2)
+                        Text("\(entry.parkingSpace)")
+                            .foregroundColor(.black)
+                            .font(.headline)
+                            .fontDesign(.rounded)
+                    }.padding(.trailing)
                 }
+                Spacer()
             }
+        }
+    }
+}
+
+private struct CircularProgressView: View {
+    let progress: Double
+    
+    var body: some View {
+        ZStack {
+            Circle()
+                .stroke(
+                    Color.black.opacity(0.5),
+                    lineWidth: 8
+                )
+            Circle()
+                .trim(from: 0, to: progress)
+                .stroke(
+                    Color.yellow,
+                    style: StrokeStyle(
+                        lineWidth: 5,
+                        lineCap: .round
+                    )
+                )
+                .rotationEffect(.degrees(-90))
         }
     }
 }
@@ -88,14 +158,15 @@ struct parking_lot_widget: Widget {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             parking_lot_widgetEntryView(entry: entry)
         }
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
+        .supportedFamilies([.systemSmall])
+        .configurationDisplayName("Parking Lot Widget")
+        .description("Shows open parking spaces and parked position")
     }
 }
 
-//struct parking_lot_widget_Previews: PreviewProvider {
-//    static var previews: some View {
-//        parking_lot_widgetEntryView(entry: SimpleEntry(date: Date()))
-//            .previewContext(WidgetPreviewContext(family: .systemSmall))
-//    }
-//}
+struct parking_lot_widget_Previews: PreviewProvider {
+    static var previews: some View {
+        parking_lot_widgetEntryView(entry: SimpleEntry(date: Date(), vehicleModel: "Toyota Yaris", parkingSpace: "A2", isParked: true))
+            .previewContext(WidgetPreviewContext(family: .systemSmall))
+    }
+}

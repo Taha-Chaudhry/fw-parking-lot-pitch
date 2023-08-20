@@ -49,14 +49,22 @@ struct StartingView: View {
                                 .multilineTextAlignment(.center)
                                 .padding()
                             
-                            
-                            TextField("Toyota Camry...", text: $vehicleModel)
-                                .padding()
-                                .background(Color.white)
-                                .cornerRadius(6)
-                                .shadow(radius: 3, x: 2, y: 2)
-                                .shadow(radius: 3, x: -2, y: -2)
-                                .padding()
+                            ZStack {
+                                TextField("Toyota Camry...", text: $vehicleModel)
+                                    .padding()
+                                    .background(Color.white)
+                                    .cornerRadius(6)
+                                    .shadow(radius: 3, x: 2, y: 2)
+                                    .shadow(radius: 3, x: -2, y: -2)
+                                    .padding()
+                                HStack {
+                                    Spacer()
+                                    DataService().getLogo(vehicleModel)
+                                        .frame(width: 25, height: 25)
+                                }
+                                .padding(.trailing)
+                                .padding(.trailing)
+                            }
                             
                             NavigationLink {
                                 ContentView().navigationBarBackButtonHidden()

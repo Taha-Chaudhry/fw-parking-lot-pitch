@@ -9,17 +9,6 @@ import ActivityKit
 import WidgetKit
 import SwiftUI
 
-//struct parking_lot_widgetAttributes: ActivityAttributes {
-//    public struct ContentState: Codable, Hashable {
-//        // Dynamic stateful properties about your activity go here!
-//        var value: Int
-////        var timeElapsed: Date
-//    }
-//
-//    // Fixed non-changing properties about your activity go here!
-//    var name: String
-//}
-
 struct parking_lot_widgetLiveActivity: Widget {
     var body: some WidgetConfiguration {
         ActivityConfiguration(for: ParkingAttributes.self) { context in
@@ -73,16 +62,48 @@ struct parking_lot_widgetLiveActivity: Widget {
         } dynamicIsland: { context in
             DynamicIsland {
                 DynamicIslandExpandedRegion(.leading) {
-                    Text("Leading")
+                    Text("Parking")
+                        .font(.title2)
+                        .padding()
                 }
-                DynamicIslandExpandedRegion(.center) {
-                    Text("Center")
-                }
+                
                 DynamicIslandExpandedRegion(.trailing) {
-                    Text("Trailing")
+                    Text("\(context.attributes.parkingSpace)")
+                        .foregroundColor(.yellow)
+                        .font(.headline)
+                        .fontDesign(.rounded)
+                        .padding([.top, .trailing])
                 }
+                
                 DynamicIslandExpandedRegion(.bottom) {
-                    Text("Bottom")
+                    VStack {
+                        HStack {
+                            Text(context.state.startDate, style: .timer)
+                                .font(.largeTitle)
+                                .frame(width: 80)
+                            
+                            Spacer()
+                            Text("\(context.attributes.vehicleModel)")
+                                .font(.subheadline)
+                                .fontDesign(.rounded)
+                                .fontWeight(.heavy)
+                                .bold()
+                            Spacer()
+                            
+                            Link(destination: URL(string:"parkingapp://unpark")!) {
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 15)
+                                        .frame(width: 100, height: 40)
+                                        .foregroundColor(.yellow)
+                                    Text("Unpark")
+                                        .fontDesign(.rounded)
+                                        .fontWeight(.heavy)
+                                        .bold()
+                                        .foregroundColor(.black)
+                                }.shadow(radius: 10)
+                            }
+                        }.padding([.bottom, .leading, .trailing])
+                    }
                 }
             } compactLeading: {
                 Image(systemName: "parkingsign.circle")

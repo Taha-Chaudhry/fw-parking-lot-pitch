@@ -41,12 +41,6 @@ struct DataService {
         "volvo" : "volvoImage"
     ]
     
-    func unpark() {
-        isParked = false
-        parkingSpace = ""
-        WidgetCenter.shared.reloadTimelines(ofKind: "parking_lot_widget")
-    }
-    
     func getVehicleModel() -> String {
         return vehicleModel
     }

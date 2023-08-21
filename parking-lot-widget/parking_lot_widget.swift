@@ -43,7 +43,6 @@ struct SimpleEntry: TimelineEntry {
 struct parking_lot_widgetEntryView : View {
     var entry: Provider.Entry
     
-    let date = Date()
     
     func formattedTime(from date: Date) -> String {
         let formatter = DateFormatter()
@@ -106,7 +105,7 @@ struct parking_lot_widgetEntryView : View {
                                 .bold()
                                 .foregroundColor(.gray)
                                 .multilineTextAlignment(.center)
-                        Text(formattedTime(from: date))
+                        Text(formattedTime(from: entry.date))
                             .font(.title)
                     }.padding([.leading, .bottom])
                     Spacer()

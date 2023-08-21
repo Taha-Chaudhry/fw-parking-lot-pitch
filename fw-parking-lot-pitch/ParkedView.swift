@@ -84,12 +84,7 @@ struct ParkedView: View {
             Spacer()
             
             Button {
-                withAnimation {
-                    isParked = false
-                    parkingSpace = ""
-                    WidgetCenter.shared.reloadTimelines(ofKind: "parking_lot_widget")
-                }
-                UnparkedView().stopActivity()
+                ContentView().unpark()
             } label: {
                 ZStack {
                     RoundedRectangle(cornerRadius: 15)

@@ -75,10 +75,7 @@ struct UnparkedView: View {
             }
             ToolbarItem(placement: .navigationBarLeading) {
                 Button(action: {
-                    isParked = false
-                    parkingSpace = ""
-                    WidgetCenter.shared.reloadTimelines(ofKind: "parking_lot_widget")
-                    $vehicleModel.wrappedValue = ""
+                    ContentView().unpark()
                 }) {
                     Label("Reset", systemImage: "exclamationmark.arrow.circlepath")
                 }

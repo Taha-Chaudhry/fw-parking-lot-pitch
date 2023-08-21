@@ -25,9 +25,6 @@ struct ContentView: View {
             }
         }
         .onOpenURL { incomingURL in
-            DispatchQueue.main.async {
-                handleIncomingURL(incomingURL)
-            }
             handleIncomingURL(incomingURL)
         }
     }
@@ -38,13 +35,17 @@ struct ContentView: View {
         }
 
         if url.host == "unpark" {
-            isParked = false
-            parkingSpace = ""
-            WidgetCenter.shared.reloadTimelines(ofKind: "parking_lot_widget")
-            UnparkedView().stopActivity()
+            unpark()
         }
         
         return
+    }
+    
+    public func unpark() {
+        isParked = false
+        parkingSpace = ""
+        WidgetCenter.shared.reloadTimelines(ofKind: "parking_lot_widget")
+        UnparkedView().stopActivity()
     }
 }
 

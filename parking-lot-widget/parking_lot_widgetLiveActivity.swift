@@ -10,6 +10,8 @@ import WidgetKit
 import SwiftUI
 
 struct parking_lot_widgetLiveActivity: Widget {
+    let date = Date()
+    
     var body: some WidgetConfiguration {
         ActivityConfiguration(for: ParkingAttributes.self) { context in
             VStack() {
@@ -30,16 +32,18 @@ struct parking_lot_widgetLiveActivity: Widget {
                 }
                 
                 HStack {
-                    Text(context.state.startDate, style: .timer)
+                    Text(date, style: .timer)
                         .font(.largeTitle)
-                        .frame(width: 80)
+                        .frame(width: 100)
                     
                     Spacer()
-                    Text("\(context.attributes.vehicleModel)")
-                        .font(.subheadline)
-                        .fontDesign(.rounded)
-                        .fontWeight(.heavy)
-                        .bold()
+                    if context.state.isEVSpace {
+                        Label("", systemImage: context.state.isCharging ? "bolt.fill" : "bolt.slash")
+                            .foregroundColor(context.state.isCharging ? .green : .gray)
+                    } else {
+                        DataService().getLogo(context.attributes.vehicleModel)
+                            .frame(width: 30, height: 30)
+                    }
                     Spacer()
                     Link(destination: URL(string:"parkingapp://unpark")!) {
                         ZStack {
@@ -78,16 +82,19 @@ struct parking_lot_widgetLiveActivity: Widget {
                 DynamicIslandExpandedRegion(.bottom) {
                     VStack {
                         HStack {
-                            Text(context.state.startDate, style: .timer)
+                            Text(date, style: .timer)
                                 .font(.largeTitle)
-                                .frame(width: 80)
+                                .frame(width: 100)
                             
                             Spacer()
-                            Text("\(context.attributes.vehicleModel)")
-                                .font(.subheadline)
-                                .fontDesign(.rounded)
-                                .fontWeight(.heavy)
-                                .bold()
+                            
+                            if context.state.isEVSpace {
+                                Label("", systemImage: context.state.isCharging ? "bolt.fill" : "bolt.slash")
+                                    .foregroundColor(context.state.isCharging ? .green : .gray)
+                            } else {
+                                DataService().getLogo(context.attributes.vehicleModel)
+                                    .frame(width: 30, height: 30)
+                            }
                             Spacer()
                             
                             Link(destination: URL(string:"parkingapp://unpark")!) {
@@ -121,7 +128,7 @@ struct parking_lot_widgetLiveActivity: Widget {
 
 struct parking_lot_widgetLiveActivity_Previews: PreviewProvider {
     static let attributes = ParkingAttributes(vehicleModel: "Toyota Yarris", parkingSpace: "A2")
-    static let contentState = ParkingAttributes.ContentState(startDate: Date())
+    static let contentState = ParkingAttributes.ContentState(isEVSpace: false, isCharging: false)
 
     static var previews: some View {
         attributes

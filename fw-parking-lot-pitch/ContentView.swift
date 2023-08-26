@@ -10,9 +10,11 @@ import SwiftUI
 import WidgetKit
 
 struct ContentView: View {
-    @AppStorage("vehicleModel", store: UserDefaults(suiteName: "group.com.parkinglot.pitch")) var vehicleModel: String = ""
-    @AppStorage("isParked", store: UserDefaults(suiteName: "group.com.parkinglot.pitch")) var isParked: Bool = false
-    @AppStorage("parkingSpace", store: UserDefaults(suiteName: "group.com.parkinglot.pitch")) var parkingSpace: String = ""
+    @AppStorage("vehicleModel", store: UserDefaults(suiteName: "group.com.futureworkshops.widget.parking-lot")) var vehicleModel: String = ""
+    @AppStorage("isParked", store: UserDefaults(suiteName: "group.com.futureworkshops.widget.parking-lot")) var isParked: Bool = false
+    @AppStorage("parkingSpace", store: UserDefaults(suiteName: "group.com.futureworkshops.widget.parking-lot")) var parkingSpace: String = ""
+    @AppStorage("isEVSpace", store: UserDefaults(suiteName: "group.com.futureworkshops.widget.parking-lot")) var isEVSpace: Bool = false
+    @AppStorage("isCharging", store: UserDefaults(suiteName: "group.com.futureworkshops.widget.parking-lot")) var isCharging: Bool = false
     
     var body: some View {
         NavigationStack {
@@ -20,7 +22,11 @@ struct ContentView: View {
                 if vehicleModel == "" {
                     StartingView()
                 } else {
-                    UnparkedView()
+                    if isParked {
+                        ParkedView(isParked: $isParked)
+                    } else {
+                        UnparkedView()
+                    }
                 }
             }
         }
@@ -44,6 +50,8 @@ struct ContentView: View {
     public func unpark() {
         isParked = false
         parkingSpace = ""
+        isEVSpace = false
+        isCharging = false
         WidgetCenter.shared.reloadTimelines(ofKind: "parking_lot_widget")
         UnparkedView().stopActivity()
     }

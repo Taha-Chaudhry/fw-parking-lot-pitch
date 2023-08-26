@@ -10,18 +10,25 @@ import SwiftUI
 import WidgetKit
 
 struct ParkedView: View {
-    @AppStorage("vehicleModel", store: UserDefaults(suiteName: "group.com.parkinglot.pitch")) var vehicleModel: String = ""
     @Binding var isParked: Bool
-    @AppStorage("parkingSpace", store: UserDefaults(suiteName: "group.com.parkinglot.pitch")) var parkingSpace: String = ""
+    @AppStorage("parkingSpace", store: UserDefaults(suiteName: "group.com.futureworkshops.widget.parking-lot")) var parkingSpace: String = ""
+    @AppStorage("isEVSpace", store: UserDefaults(suiteName: "group.com.futureworkshops.widget.parking-lot")) var isEVSpace: Bool = false
+    @AppStorage("isCharging", store: UserDefaults(suiteName: "group.com.futureworkshops.widget.parking-lot")) var isCharging: Bool = false
     
     @State private var progress: Double = 0
+    @State private var scale: CGFloat = 1.0
     @State private var showText: Bool = false
     var activity: Activity<ParkingAttributes>?
     
     var body: some View {
         VStack {
-            Spacer()
-            Spacer()
+            VStack {
+                Text("Parking")
+                    .font(.title3)
+                    .bold()
+                    .multilineTextAlignment(.center)
+                    .padding()
+            }
             
             ZStack {
                 Image("ParkedImage")
@@ -73,7 +80,20 @@ struct ParkedView: View {
             
             Spacer()
             if showText {
-                Text("Your space is reserved, you can close the app now.")
+                if isEVSpace {
+                    Label("", systemImage: isCharging ? "bolt.fill" : "bolt.slash")
+                        .foregroundColor(isCharging ? .green : .gray)
+                        .scaleEffect(scale)
+                        .onAppear {
+                            if isCharging {
+                                withAnimation(Animation.easeInOut(duration: 1.0).repeatForever(autoreverses: true)) {
+                                    self.scale = 1.5
+                                }
+                            }
+                        }
+                }
+                
+                Text(isEVSpace ? (isCharging ? "Your car is charging and your parking is being tracked, you can close the app now." : "Your parking is being tracked, you can close the app now, or start charging.") : "Your parking is being tracked, you can close the app now.")
                     .fontDesign(.rounded)
                     .bold()
                     .foregroundColor(.gray)
@@ -81,26 +101,30 @@ struct ParkedView: View {
                     .padding()
             }
             
-            Spacer()
-            
-            Button {
-                ContentView().unpark()
-            } label: {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 15)
-                        .frame(width: 300, height: 60)
-                        .foregroundColor(.black)
-                    Text("Unpark")
-                        .fontDesign(.rounded)
-                        .fontWeight(.heavy)
-                        .bold()
-                        .foregroundColor(.white)
-                }.shadow(radius: 10)
-            }
+//            Spacer()
+//
+//            Button {
+//                ContentView().unpark()
+//            } label: {
+//                ZStack {
+//                    RoundedRectangle(cornerRadius: 15)
+//                        .frame(width: 300, height: 60)
+//                        .foregroundColor(.black)
+//                    Text("Unpark")
+//                        .fontDesign(.rounded)
+//                        .fontWeight(.heavy)
+//                        .bold()
+//                        .foregroundColor(.white)
+//                }.shadow(radius: 10)
+//            }
         }
         .interactiveDismissDisabled()
-        .navigationTitle("Parking")
         .navigationBarTitleDisplayMode(.inline)
+        .onAppear {
+            if Activity<ParkingAttributes>.activities.count == 0, isParked == true {
+                do { try UnparkedView().startActivity() } catch {}
+            }
+        }
     }
 }
 

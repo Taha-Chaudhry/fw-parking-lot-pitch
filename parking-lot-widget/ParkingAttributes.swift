@@ -10,7 +10,8 @@ import ActivityKit
 
 struct ParkingAttributes: ActivityAttributes {
     public struct ContentState: Codable, Hashable {
-        var startDate: Date
+        var isEVSpace: Bool
+        var isCharging: Bool
     }
     
     var vehicleModel: String

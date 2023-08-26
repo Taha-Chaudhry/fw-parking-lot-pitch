@@ -13,11 +13,11 @@ struct Provider: TimelineProvider {
     let data = DataService()
     
     func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), vehicleModel: data.getVehicleModel(), parkingSpace: data.getParkingSpace(), isParked: data.getIsParked())
+        SimpleEntry(date: Date(), vehicleModel: data.getVehicleModel(), parkingSpace: data.getParkingSpace(), isParked: data.getIsParked(), isCharging: data.getIsCharging(), isEVSpace: data.getIsEVSpace())
     }
 
     func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date(), vehicleModel: data.getVehicleModel(), parkingSpace: data.getParkingSpace(), isParked: data.getIsParked())
+        let entry = SimpleEntry(date: Date(), vehicleModel: data.getVehicleModel(), parkingSpace: data.getParkingSpace(), isParked: data.getIsParked(), isCharging: data.getIsCharging(), isEVSpace: data.getIsEVSpace())
         completion(entry)
     }
 
@@ -25,7 +25,7 @@ struct Provider: TimelineProvider {
         var entries: [SimpleEntry] = []
         
         let currentDate = Date()
-        let entry = SimpleEntry(date: currentDate, vehicleModel: data.getVehicleModel(), parkingSpace: data.getParkingSpace(), isParked: data.getIsParked())
+        let entry = SimpleEntry(date: currentDate, vehicleModel: data.getVehicleModel(), parkingSpace: data.getParkingSpace(), isParked: data.getIsParked(), isCharging: data.getIsCharging(), isEVSpace: data.getIsEVSpace())
         entries.append(entry)
 
         let timeline = Timeline(entries: [entry], policy: .atEnd)
@@ -38,6 +38,8 @@ struct SimpleEntry: TimelineEntry {
     let vehicleModel: String
     let parkingSpace: String
     let isParked: Bool
+    let isCharging: Bool
+    let isEVSpace: Bool
 }
 
 struct parking_lot_widgetEntryView : View {
@@ -78,12 +80,23 @@ struct parking_lot_widgetEntryView : View {
             VStack(alignment: .leading) {
                 HStack {
                     VStack(alignment: .leading) {
-                        Text("Parking")
-                            .fontDesign(.rounded)
-                            .bold()
-                            .foregroundColor(.yellow)
-                            .multilineTextAlignment(.leading)
-                            .padding([.leading, .top])
+                        if entry.isEVSpace {
+                            Label("Parking", systemImage: entry.isCharging ? "bolt.fill" : "bolt.slash")
+                                .foregroundColor(entry.isCharging ? .green : .yellow)
+                                .fontDesign(.rounded)
+                                .bold()
+                                .foregroundColor(.yellow)
+                                .multilineTextAlignment(.leading)
+                                .padding([.leading, .top])
+                        } else {
+                            Text("Parking")
+                                .foregroundColor(.yellow)
+                                .fontDesign(.rounded)
+                                .bold()
+                                .foregroundColor(.yellow)
+                                .multilineTextAlignment(.leading)
+                                .padding([.leading, .top])
+                        }
                         HStack {
                             Text("\(entry.vehicleModel)")
                                 .font(.subheadline)
@@ -165,7 +178,7 @@ struct parking_lot_widget: Widget {
 
 struct parking_lot_widget_Previews: PreviewProvider {
     static var previews: some View {
-        parking_lot_widgetEntryView(entry: SimpleEntry(date: Date(), vehicleModel: "Toyota Yaris", parkingSpace: "A2", isParked: true))
+        parking_lot_widgetEntryView(entry: SimpleEntry(date: Date(), vehicleModel: "Toyota Yaris", parkingSpace: "A2", isParked: true, isCharging: true, isEVSpace: false))
             .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }

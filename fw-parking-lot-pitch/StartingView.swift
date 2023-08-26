@@ -9,7 +9,10 @@ import SwiftUI
 
 struct StartingView: View {
     @State private var vehicleModel = ""
-    @AppStorage("vehicleModel", store: UserDefaults(suiteName: "group.com.parkinglot.pitch")) var vehicleModelStorage: String = ""
+    @AppStorage("vehicleModel", store: UserDefaults(suiteName: "group.com.futureworkshops.widget.parking-lot")) var vehicleModelStorage: String = ""
+    @AppStorage("name", store: UserDefaults(suiteName: "group.com.futureworkshops.widget.parking-lot")) var name: String = ""
+    @AppStorage("licensePlate", store: UserDefaults(suiteName: "group.com.futureworkshops.widget.parking-lot")) var licensePlate: String = ""
+    
     var body: some View {
         NavigationStack {
             VStack {
@@ -38,32 +41,77 @@ struct StartingView: View {
                 NavigationLink {
                     NavigationStack {
                         VStack {
-                            Text("Vehicle Model")
+                            Text("Profile")
                                 .font(.largeTitle)
                                 .bold()
-                            
-                            Text("This is used to track your vehicle and can be changed later")
-                                .fontDesign(.rounded)
-                                .bold()
-                                .foregroundColor(.gray)
-                                .multilineTextAlignment(.center)
                                 .padding()
                             
-                            ZStack {
-                                TextField("Toyota Camry...", text: $vehicleModel)
-                                    .padding()
-                                    .background(Color.white)
-                                    .cornerRadius(6)
-                                    .shadow(radius: 3, x: 2, y: 2)
-                                    .shadow(radius: 3, x: -2, y: -2)
-                                    .padding()
-                                HStack {
-                                    Spacer()
-                                    DataService().getLogo(vehicleModel)
-                                        .frame(width: 25, height: 25)
+                            VStack {
+                                VStack(alignment: .leading) {
+                                    Text("Full Name")
+                                        .fontDesign(.rounded)
+                                        .bold()
+                                        .foregroundColor(.gray)
+                                        .multilineTextAlignment(.leading)
+                                    ZStack {
+                                        VStack {
+                                            TextField("John Doe...", text: $name)
+                                                .padding()
+                                                .background(Color.white)
+                                                .cornerRadius(6)
+                                                .shadow(radius: 3, x: 2, y: 2)
+                                                .shadow(radius: 3, x: -2, y: -2)
+                                        }
+                                    }
                                 }
-                                .padding(.trailing)
-                                .padding(.trailing)
+                                .padding([.leading, .trailing])
+                                .padding([.leading, .trailing])
+                                
+                                VStack(alignment: .leading) {
+                                    Text("Vehicle Model")
+                                        .fontDesign(.rounded)
+                                        .bold()
+                                        .foregroundColor(.gray)
+                                        .multilineTextAlignment(.leading)
+                                    ZStack {
+                                        VStack {
+                                            TextField("Toyota Camry...", text: $vehicleModel)
+                                                .padding()
+                                                .background(Color.white)
+                                                .cornerRadius(6)
+                                                .shadow(radius: 3, x: 2, y: 2)
+                                                .shadow(radius: 3, x: -2, y: -2)
+                                        }
+                                        HStack {
+                                            Spacer()
+                                            DataService().getLogo(vehicleModel)
+                                                .frame(width: 25, height: 25)
+                                        }
+                                        .padding(.trailing)
+                                    }
+                                }
+                                .padding([.leading, .trailing, .top])
+                                .padding([.leading, .trailing, .top])
+                                
+                                VStack(alignment: .leading) {
+                                    Text("License plate")
+                                        .fontDesign(.rounded)
+                                        .bold()
+                                        .foregroundColor(.gray)
+                                        .multilineTextAlignment(.leading)
+                                    ZStack {
+                                        VStack {
+                                            TextField("BD51SMR...", text: $licensePlate)
+                                                .padding()
+                                                .background(Color.white)
+                                                .cornerRadius(6)
+                                                .shadow(radius: 3, x: 2, y: 2)
+                                                .shadow(radius: 3, x: -2, y: -2)
+                                        }
+                                    }
+                                }
+                                .padding()
+                                .padding()
                             }
                             
                             NavigationLink {
@@ -72,7 +120,7 @@ struct StartingView: View {
                                 ZStack {
                                     RoundedRectangle(cornerRadius: 15)
                                         .frame(width: 300, height: 60)
-                                        .foregroundColor((vehicleModel == "" || isBlank(vehicleModel)) ? .gray : .black)
+                                        .foregroundColor(((name == "" || isBlank(name)) || (vehicleModel == "" || isBlank(vehicleModel)) || (licensePlate == "" || isBlank(licensePlate))) ? .gray : .black)
                                     Text("Next")
                                         .fontDesign(.rounded)
                                         .fontWeight(.heavy)
@@ -83,7 +131,7 @@ struct StartingView: View {
                             .simultaneousGesture(TapGesture().onEnded{
                                 $vehicleModelStorage.wrappedValue = $vehicleModel.wrappedValue
                             })
-                            .disabled(vehicleModel == "" || isBlank(vehicleModel))
+                            .disabled(((name == "" || isBlank(name)) || (vehicleModel == "" || isBlank(vehicleModel)) || (licensePlate == "" || isBlank(licensePlate))))
                         }
                         .navigationBarBackButtonHidden()
                     }

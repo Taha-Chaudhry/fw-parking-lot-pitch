@@ -13,7 +13,7 @@
 		2A0D99862A90C86F006EA300 /* ParkedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0D99852A90C86F006EA300 /* ParkedView.swift */; };
 		2A0D99882A90C89B006EA300 /* UnparkedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0D99872A90C89B006EA300 /* UnparkedView.swift */; };
 		2A0D998A2A90C917006EA300 /* ParkingGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0D99892A90C917006EA300 /* ParkingGrid.swift */; };
-		2A0D998C2A90C933006EA300 /* EditVehicleModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0D998B2A90C933006EA300 /* EditVehicleModelView.swift */; };
+		2A0D998C2A90C933006EA300 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0D998B2A90C933006EA300 /* EditProfileView.swift */; };
 		2A51B37D2A8D19D800B37A14 /* fw_parking_lot_pitchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A51B37C2A8D19D800B37A14 /* fw_parking_lot_pitchApp.swift */; };
 		2A51B3812A8D19D900B37A14 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A51B3802A8D19D900B37A14 /* Assets.xcassets */; };
 		2A51B3842A8D19D900B37A14 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A51B3832A8D19D900B37A14 /* Preview Assets.xcassets */; };
@@ -59,7 +59,7 @@
 		2A0D99852A90C86F006EA300 /* ParkedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkedView.swift; sourceTree = "<group>"; };
 		2A0D99872A90C89B006EA300 /* UnparkedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnparkedView.swift; sourceTree = "<group>"; };
 		2A0D99892A90C917006EA300 /* ParkingGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingGrid.swift; sourceTree = "<group>"; };
-		2A0D998B2A90C933006EA300 /* EditVehicleModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditVehicleModelView.swift; sourceTree = "<group>"; };
+		2A0D998B2A90C933006EA300 /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		2A0D998D2A910076006EA300 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2A51B3792A8D19D800B37A14 /* fw-parking-lot-pitch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "fw-parking-lot-pitch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A51B37C2A8D19D800B37A14 /* fw_parking_lot_pitchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fw_parking_lot_pitchApp.swift; sourceTree = "<group>"; };
@@ -126,7 +126,7 @@
 				2A51B3B22A8E3A9900B37A14 /* fw-parking-lot-pitch.entitlements */,
 				2A51B37C2A8D19D800B37A14 /* fw_parking_lot_pitchApp.swift */,
 				2A51B3922A8E190200B37A14 /* ContentView.swift */,
-				2A0D998B2A90C933006EA300 /* EditVehicleModelView.swift */,
+				2A0D998B2A90C933006EA300 /* EditProfileView.swift */,
 				2A0D99892A90C917006EA300 /* ParkingGrid.swift */,
 				2A0D99872A90C89B006EA300 /* UnparkedView.swift */,
 				2A0D99852A90C86F006EA300 /* ParkedView.swift */,
@@ -273,7 +273,7 @@
 				2A51B3B02A8E37AC00B37A14 /* DataService.swift in Sources */,
 				2A0D99812A90BF94006EA300 /* ParkingAttributes.swift in Sources */,
 				2A51B3932A8E190200B37A14 /* ContentView.swift in Sources */,
-				2A0D998C2A90C933006EA300 /* EditVehicleModelView.swift in Sources */,
+				2A0D998C2A90C933006EA300 /* EditProfileView.swift in Sources */,
 				2A0D99862A90C86F006EA300 /* ParkedView.swift in Sources */,
 				2A51B37D2A8D19D800B37A14 /* fw_parking_lot_pitchApp.swift in Sources */,
 				2A0D998A2A90C917006EA300 /* ParkingGrid.swift in Sources */,
@@ -425,10 +425,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "fw-parking-lot-pitch/fw-parking-lot-pitch.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"fw-parking-lot-pitch/Preview Content\"";
-				DEVELOPMENT_TEAM = VFMMKQ4CEK;
+				DEVELOPMENT_TEAM = F94732585Z;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "fw-parking-lot-pitch/Info.plist";
@@ -443,8 +444,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.taha.chaudhry.fw-parking-lot-pitch";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.futureworkshops.widget.parking-lot";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -458,10 +460,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "fw-parking-lot-pitch/fw-parking-lot-pitch.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"fw-parking-lot-pitch/Preview Content\"";
-				DEVELOPMENT_TEAM = VFMMKQ4CEK;
+				DEVELOPMENT_TEAM = F94732585Z;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "fw-parking-lot-pitch/Info.plist";
@@ -476,8 +479,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.taha.chaudhry.fw-parking-lot-pitch";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.futureworkshops.widget.parking-lot";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -492,7 +496,7 @@
 				CODE_SIGN_ENTITLEMENTS = "parking-lot-widgetExtension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = VFMMKQ4CEK;
+				DEVELOPMENT_TEAM = F94732585Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "parking-lot-widget/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "parking-lot-widget";
@@ -503,7 +507,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.taha.chaudhry.fw-parking-lot-pitch.parking-lot-widget";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.futureworkshops.widget.parking-lot.widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -520,7 +524,7 @@
 				CODE_SIGN_ENTITLEMENTS = "parking-lot-widgetExtension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = VFMMKQ4CEK;
+				DEVELOPMENT_TEAM = F94732585Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "parking-lot-widget/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "parking-lot-widget";
@@ -531,7 +535,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.taha.chaudhry.fw-parking-lot-pitch.parking-lot-widget";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.futureworkshops.widget.parking-lot.widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;

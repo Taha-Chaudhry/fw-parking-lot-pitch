@@ -10,9 +10,11 @@ import SwiftUI
 import WidgetKit
 
 struct DataService {
-    @AppStorage("vehicleModel", store: UserDefaults(suiteName: "group.com.parkinglot.pitch")) var vehicleModel: String = ""
-    @AppStorage("isParked", store: UserDefaults(suiteName: "group.com.parkinglot.pitch")) var isParked: Bool = false
-    @AppStorage("parkingSpace", store: UserDefaults(suiteName: "group.com.parkinglot.pitch")) var parkingSpace: String = ""
+    @AppStorage("vehicleModel", store: UserDefaults(suiteName: "group.com.futureworkshops.widget.parking-lot")) var vehicleModel: String = ""
+    @AppStorage("isParked", store: UserDefaults(suiteName: "group.com.futureworkshops.widget.parking-lot")) var isParked: Bool = false
+    @AppStorage("parkingSpace", store: UserDefaults(suiteName: "group.com.futureworkshops.widget.parking-lot")) var parkingSpace: String = ""
+    @AppStorage("isCharging", store: UserDefaults(suiteName: "group.com.futureworkshops.widget.parking-lot")) var isCharging: Bool = false
+    @AppStorage("isEVSpace", store: UserDefaults(suiteName: "group.com.futureworkshops.widget.parking-lot")) var isEVSpace: Bool = false
     
     let logoDictionary: [String: String] = [
         "audi" : "audiImage",
@@ -51,6 +53,14 @@ struct DataService {
     
     func getParkingSpace() -> String {
         return parkingSpace
+    }
+    
+    func getIsCharging() -> Bool {
+        return isCharging
+    }
+    
+    func getIsEVSpace() -> Bool {
+        return isEVSpace
     }
     
     func getLogo(_ vehicleModel: String) -> AnyView {

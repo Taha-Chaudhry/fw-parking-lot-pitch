@@ -10,9 +10,9 @@ import SwiftUI
 import WidgetKit
 
 struct ParkingGrid: View {
-    @AppStorage("vehicleModel", store: UserDefaults(suiteName: "group.com.parkinglot.pitch")) var vehicleModel: String = ""
-    @AppStorage("isParked", store: UserDefaults(suiteName: "group.com.parkinglot.pitch")) var isParked: Bool = false
-    @AppStorage("parkingSpace", store: UserDefaults(suiteName: "group.com.parkinglot.pitch")) var parkingSpace: String = ""
+    @AppStorage("vehicleModel", store: UserDefaults(suiteName: "group.com.futureworkshops.widget.parking-lot")) var vehicleModel: String = ""
+    @AppStorage("isParked", store: UserDefaults(suiteName: "group.com.futureworkshops.widget.parking-lot")) var isParked: Bool = false
+    @AppStorage("parkingSpace", store: UserDefaults(suiteName: "group.com.futureworkshops.widget.parking-lot")) var parkingSpace: String = ""
     
     var activity: Activity<ParkingAttributes>?
     var row: Int
@@ -38,7 +38,7 @@ struct ParkingGrid: View {
                     $parkingSpace.wrappedValue = parkingSpace
                     WidgetCenter.shared.reloadTimelines(ofKind: "parking_lot_widget")
                 }
-                UnparkedView().startActivity()
+                do { try UnparkedView().startActivity() } catch {}
             } label: {
                 RoundedRectangle(cornerRadius: 10)
                     .frame(width: 40, height: 40)

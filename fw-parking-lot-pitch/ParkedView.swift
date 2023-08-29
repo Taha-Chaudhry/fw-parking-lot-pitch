@@ -15,6 +15,7 @@ struct ParkedView: View {
     @AppStorage("isEVSpace", store: UserDefaults(suiteName: "group.com.futureworkshops.widget.parking-lot")) var isEVSpace: Bool = false
     @AppStorage("isCharging", store: UserDefaults(suiteName: "group.com.futureworkshops.widget.parking-lot")) var isCharging: Bool = false
     
+    @Environment(\.scenePhase) private var scenePhase
     @State private var progress: Double = 0
     @State private var scale: CGFloat = 1.0
     @State private var showText: Bool = false
@@ -76,7 +77,20 @@ struct ParkedView: View {
                 withAnimation(.easeInOut(duration: 1.5).delay(0.2)) {
                     showText = true
                 }
-            }.padding()
+                
+                if Activity<ParkingAttributes>.activities.count == 0, isParked == true {
+                    do { try UnparkedView().startActivity() } catch {}
+                }
+            }
+            .onChange(of: scenePhase) { _ in
+                if Activity<ParkingAttributes>.activities.count == 0, isParked == true {
+                    do { try UnparkedView().startActivity() } catch {}
+                }
+                if Activity<ParkingAttributes>.activities.count == 0, isParked == true {
+                    do { try UnparkedView().startActivity() } catch {}
+                }
+            }
+            .padding()
             
             Spacer()
             if showText {
@@ -120,11 +134,6 @@ struct ParkedView: View {
         }
         .interactiveDismissDisabled()
         .navigationBarTitleDisplayMode(.inline)
-        .onAppear {
-            if Activity<ParkingAttributes>.activities.count == 0, isParked == true {
-                do { try UnparkedView().startActivity() } catch {}
-            }
-        }
     }
 }
 

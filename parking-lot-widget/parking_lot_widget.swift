@@ -178,7 +178,7 @@ struct parking_lot_widget: Widget {
 
 struct parking_lot_widget_Previews: PreviewProvider {
     static var previews: some View {
-        parking_lot_widgetEntryView(entry: SimpleEntry(date: Date(), vehicleModel: "Toyota Yaris", parkingSpace: "A2", isParked: true, isCharging: true, isEVSpace: false))
+        parking_lot_widgetEntryView(entry: SimpleEntry(date: Date(), vehicleModel: "Toyota Yaris", parkingSpace: "A2", isParked: true, isCharging: false, isEVSpace: true))
             .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }

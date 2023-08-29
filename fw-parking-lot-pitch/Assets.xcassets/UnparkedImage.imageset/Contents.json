@@ -1,0 +1,21 @@
+{
+  "images" : [
+    {
+      "filename" : "enlarge_68480050-isometric-illustration-of-car-parking-place-with-bench-street-light-invalid-place-parking-geotag.jpg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

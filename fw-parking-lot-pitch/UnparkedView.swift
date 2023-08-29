@@ -31,53 +31,28 @@ struct UnparkedView: View {
                     .frame(width: 35, height: 35)
             }.padding()
             
-//            Text("Tap on the space you would like to park at")
-//                .fontDesign(.rounded)
-//                .bold()
-//                .foregroundColor(.gray)
-//                .multilineTextAlignment(.center)
+//            Divider()
+            Image("UnparkedImage")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 550, height: 400)
+                .padding(.top)
+                .padding(.top)
             
-            Divider()
-
-//            Spacer()
-//            Spacer()
+            VStack {
+                Text("You are currently not parked")
+//                    .padding(.bottom)
+                Text("Once you reach your parking space you will be notified")
+//                    .padding(.top)
+            }
+            .fontDesign(.rounded)
+            .bold()
+            .foregroundColor(.gray)
+            .multilineTextAlignment(.center)
+            .font(.title2)
+            .padding([.leading, .trailing])
             
-            Text("We kindly ask you to park your vehicle to proceed. Thank you for your cooperation")
-                .fontDesign(.rounded)
-                .bold()
-                .foregroundColor(.gray)
-                .multilineTextAlignment(.center)
             Spacer()
-            
-//            VStack {
-//                ForEach(0..<5) { row in
-//                    HStack {
-//                        let leftPreview = "\(Character(UnicodeScalar(row + 65)!))"
-//                        Text("").padding()
-//                        VStack {
-//                            if row == 0 {
-//                                Spacer()
-//                                    .frame(width: 40, height: 40)
-//                            }
-//                            Text("\(leftPreview)")
-//                                .frame(width: 40, height: 40)
-//                                .foregroundColor(.gray)
-//                                .multilineTextAlignment(.center)
-//                                .edgesIgnoringSafeArea(.bottom)
-//                        }
-//
-//                        ForEach(1..<5) { column in
-//                            ParkingGrid(isParked: isParked, parkingSpace: parkingSpace, activity: activity, row: row, column: column)
-//                        }.padding()
-//
-//                        Text("")
-//                            .frame(width: 40, height: 40)
-//                            .foregroundColor(.gray)
-//                            .multilineTextAlignment(.center)
-//                            .edgesIgnoringSafeArea(.bottom)
-//                    }
-//                }.padding()
-//            }
         }
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
@@ -125,7 +100,6 @@ struct UnparkedView: View {
             for activity in Activity<ParkingAttributes>.activities {
                 await activity.update(updatedContent, alertConfiguration: alertConfiguration)
             }
-            WidgetCenter.shared.reloadTimelines(ofKind: "parking_lot_widget")
         }
     }
     
@@ -142,3 +116,8 @@ struct UnparkedView: View {
     }
 }
  
+struct UnparkedView_Previews: PreviewProvider {
+    static var previews: some View {
+        UnparkedView()
+    }
+}

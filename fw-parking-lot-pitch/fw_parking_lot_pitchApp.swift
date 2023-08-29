@@ -55,7 +55,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             
             if self.isParked == true {
                 if parkingSpace != "" {
-                    if userInfo["isEVSpace"] as? Bool == true {
+                    if let isEVSpace = userInfo["isEVSpace"] as? Bool, isEVSpace == true {
                         if let isCharging = userInfo["isCharging"] as? Bool {
                             switch (self.isCharging, isCharging) {
                             case (false, true):
@@ -67,7 +67,9 @@ class AppDelegate: NSObject, UIApplicationDelegate {
                                 return
                             }
                             
+                            self.isEVSpace = isEVSpace
                             self.isCharging = isCharging
+                            WidgetCenter.shared.reloadTimelines(ofKind: "parking_lot_widget")
                             if Activity<ParkingAttributes>.activities.count != 0 {
                                 UnparkedView().updateActivity(isCharging: isCharging)
                             } else {
@@ -87,10 +89,10 @@ class AppDelegate: NSObject, UIApplicationDelegate {
                 }
                 
                 if let isEVSpace = userInfo["isEVSpace"] as? Bool, let isCharging = userInfo["isCharging"] as? Bool {
-                    withAnimation {
+//                    withAnimation {
                         self.isEVSpace = isEVSpace
                         self.isCharging = isCharging
-                    }
+//                    }
                 }
                 
                 content.title = isEVSpace ? (isCharging ? "\(vehicleModel) parked and charging ⚡️" : "\(vehicleModel) parked") : "\(vehicleModel) parked"
@@ -100,6 +102,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
                 WidgetCenter.shared.reloadTimelines(ofKind: "parking_lot_widget")
                 request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: nil)
                 UNUserNotificationCenter.current().add(request)
+//                completionHandler(.newData)
             } else {
                 ContentView().unpark()
                 UnparkedView().stopActivity()
@@ -111,10 +114,9 @@ class AppDelegate: NSObject, UIApplicationDelegate {
                 WidgetCenter.shared.reloadTimelines(ofKind: "parking_lot_widget")
                 request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: nil)
                 UNUserNotificationCenter.current().add(request)
+                completionHandler(.newData)
             }
         }
-        
-        completionHandler(.newData)
     }
     
 }

@@ -23,7 +23,9 @@ struct ContentView: View {
                     StartingView()
                 } else {
                     if isParked {
-                        ParkedView(isParked: $isParked)
+                        withAnimation {
+                            ParkedView(isParked: $isParked)
+                        }
                     } else {
                         UnparkedView()
                     }

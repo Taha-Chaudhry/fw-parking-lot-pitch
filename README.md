@@ -3,7 +3,7 @@ iOS App that allows users to view venue parking spaces, and allows venues to kee
 
 ## Widget Preview
 
-### Unparked/Parked
+### Unparked / Parked
 
 - Grid View to show vacant parking spaces
 - Dynamic Logo depending on car
@@ -24,11 +24,15 @@ iOS App that allows users to view venue parking spaces, and allows venues to kee
 
 ## App Preview
 
-
+### Park / Unpark
 
 https://github.com/Taha-Chaudhry/fw-parking-lot-pitch/assets/46199675/9121b73d-a545-4f84-bfcf-4f7db28c738f
 
 
+https://github.com/Taha-Chaudhry/fw-parking-lot-pitch/assets/46199675/06c14898-184c-4426-bd16-48990feed317
+
+
+### Park and charge / 
 
 
 

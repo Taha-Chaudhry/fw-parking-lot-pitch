@@ -26,8 +26,7 @@ iOS App that allows users to view venue parking spaces, and allows venues to kee
 
 ### Park / Unpark
 
-https://github.com/Taha-Chaudhry/fw-parking-lot-pitch/assets/46199675/20e247e8-f717-481a-8f0a-a08d4a2f7791
-
+![park](https://github.com/Taha-Chaudhry/fw-parking-lot-pitch/assets/46199675/25921c1d-d770-4b0c-98e2-09834df0af99)
 
 
 ### Charge/ 

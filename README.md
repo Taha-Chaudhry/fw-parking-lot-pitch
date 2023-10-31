@@ -1,3 +1,5 @@
+
+https://github.com/Taha-Chaudhry/fw-parking-lot-pitch/assets/46199675/4bd7e017-b99e-4cae-a8ec-d26ed8fbd855
 # Parking Lot App
 iOS App that allows users to view venue parking spaces, and allows venues to keep track of parked cars. Created to showcase WidgetKit, ActivityKit, and modern SwiftUI design
 
@@ -36,8 +38,16 @@ https://github.com/Taha-Chaudhry/fw-parking-lot-pitch/assets/46199675/97fa0fa2-6
 
 ### Charge / Uncharge
 
-![charge](https://im3.ezgif.com/tmp/ezgif-3-d22a8fbcd0.gif)
-![uncharge](https://im3.ezgif.com/tmp/ezgif-3-090e305e32.gif)
+#### Charge
+https://github.com/Taha-Chaudhry/fw-parking-lot-pitch/assets/46199675/55113fb0-b948-48c4-ba4d-cd37bf5d2f6e
+
+#### Uncharge
+https://github.com/Taha-Chaudhry/fw-parking-lot-pitch/assets/46199675/0b7058b7-be3f-4589-9478-405842fd0c5d
+
+
+
+
+
 
 ### Park Animation
 
